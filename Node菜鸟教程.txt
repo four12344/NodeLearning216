@@ -1,0 +1,27 @@
+Node
+	node的组成
+		1、引入 required 模块
+			http 模块
+		2、创建服务器
+			http.createServer() 
+				listen 方法绑定 8888 端口
+		3、接收请求与响应请求
+			request, response 参数来接收和响应数据
+				response.writeHead(200, {'Content-Type': 'text/plain'});
+				 response.end('Hello World\n');
+		查看方法：打开浏览器访问 http://127.0.0.1:8888/
+	npm
+	node的终端
+		学名：REPL交互式解释器
+		使用方法
+			打开
+				终端输入：node
+			关闭
+				当前
+					^ c
+				整个终端
+					^c ^c
+	知识点
+		回调函数
+			Node 所有 API 都支持回调函数
+				可以
