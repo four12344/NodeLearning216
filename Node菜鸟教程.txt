@@ -11,6 +11,21 @@ Node
 				 response.end('Hello World\n');
 		查看方法：打开浏览器访问 http://127.0.0.1:8888/
 	npm
+		查看版本
+			npm -v
+		安装模块
+			npm install <Module Name> -g
+				加-g表全局安装 不加则表示本地安装(该项目的node_modules中)
+		查看全局安装的模块
+			npm list -g
+		查看某个模块的版本号
+			npm list express
+		卸载模块
+			npm uninstall express
+		更新模块
+			npm update express
+		搜索模块
+			npm search express
 	node的终端
 		学名：REPL交互式解释器
 		使用方法
@@ -69,3 +84,4 @@ Node
 			（略）继承 EventEmitter
 				大多数时候我们不会直接使用 EventEmitter，而是在对象中继承它。
 				包括 fs、net、 http 在内的，只要是支持事件响应的核心模块都是 EventEmitter 的子类。
+			Node 所有 API 都支持回调函数
