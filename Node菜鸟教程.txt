@@ -24,4 +24,48 @@ Node
 	知识点
 		回调函数
 			Node 所有 API 都支持回调函数
-				可以
+			作用：
+				避免代码阻塞或者等待文件I/O操作。
+			 V8 引擎提供的异步执行回调接口
+		事件循环
+			node.js 是单进程单线程应用程序
+			node.js事件机制是用设计模式中观察者模式实现
+			（略）Node.js 单线程类似进入一个while(true)的事件循环，直到没有事件观察者退出，每个异步事件都生成一个事件观察者，如果有事件发生就调用该回调函数.
+		EventEmitter
+			由events模块提供的对象
+			核心：事件的触发、事件的监听
+			使用：
+				引入
+					var EventEmitter = require('events').EventEmitter;
+				实例化
+					var event = new EventEmitter(); 
+				添加监听器
+					event.on('some_event', function() {  .}
+					注意：一个事件可以添加多个监听器（被依次调用）
+				事件的触发
+					event.emit('some_event'); 
+			方法：
+				添加监听器
+					addListener(event, listener)
+						添加到监听器数组的尾部
+					once(event, listener)
+						只监听1次
+					on(event, listener)
+				移除监听器
+					removeListener(event, listener)
+						移除指定事件的某1个
+					removeAllListeners([event])
+						移除所有/指定事件的所有监听器
+				增加监听器数量
+					setMaxListeners(n)
+					默认不能超过10个
+				查看事件的监听器
+					listeners(event)
+				触发监听器
+					emit(event, [arg1], [arg2], [...])
+						若无监听器返回false
+				查看监听器的数量
+					events.emitter.listenerCount(eventName)
+			（略）继承 EventEmitter
+				大多数时候我们不会直接使用 EventEmitter，而是在对象中继承它。
+				包括 fs、net、 http 在内的，只要是支持事件响应的核心模块都是 EventEmitter 的子类。
