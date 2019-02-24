@@ -3,21 +3,21 @@ var app = express();
 // 文件处理的包
 var fs = require("fs");
 
-// ✏️ 这个是什么？
+// ✏️ body-parser - node.js 中间件，用于处理 JSON, Raw, Text 和 URL 编码的数据。
 var bodyParser = require('body-parser');
 // 创建 application/x-www-form-urlencoded 编码解析
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
-// ✏️ 这个是什么？
+// ✏️ multer - node.js 中间件，用于处理 enctype="multipart/form-data"（设置表单的MIME编码）的表单数据。
 var multer = require('multer');
 app.use(multer({ dest: '/tmp/'}).array('image'));
-// ⚠️ 上传的文件的 "path":"/tmp/80bc542cac76fe442a9b7647384c2aa7"
 
-// ✏️ 这个是什么？
+// ✏️ cookie-parser - 这就是一个解析Cookie的工具。通过req.cookies可以取到传过来的cookie，并把它们转成对象。
 var cookieParser = require('cookie-parser');
 app.use(cookieParser())
 
-// ✏️ 这个是什么？
+// ✏️ util 是一个Node.js 核心模块，提供常用函数的集合，用于弥补核心JavaScript 的功能 过于精简的不足。
+// util.inherits(constructor, superConstructor)是一个实现对象间原型继承 的函数。
 var util = require('util');
 
 // 0、表单请求，查看Cookies
@@ -62,6 +62,7 @@ app.post('/file_upload', function (req, res) {
 
     var des_file = __dirname + "/upload/" + req.files[0].originalname; // 图片上传到哪一个文件
     fs.readFile(req.files[0].path, function (err, data) {
+        // ⚠️ 上传的文件的req.files[0].path为 "path":"/tmp/80bc542cac76fe442a9b7647384c2aa7"
         // ⚠️ des_file 这里将上传路径必须存在，即不会自动创建文件夹upload
         fs.writeFile(des_file, data, function (err) {
             if (err) {
